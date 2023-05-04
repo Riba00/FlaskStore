@@ -1,0 +1,28 @@
+{% extends "app.html" %}
+{% block content %}
+<h1>PRODUCT LIST</h1>
+<div class="row pb-5 mb-4">
+    {% for product in products %}
+    <div class="col-lg-3 col-md-6 mb-4 mb-lg-0">
+        <a href="/product/{{ product.get('id') }}">
+            <div class="card rounded shadow-sm border-1">
+                <div class="card-body p-4">
+                    <img src="{{ product.get('imageUrl') }}"
+                         alt="" class="img-fluid d-block mx-auto mb-3">
+                    <h5><a href="/product/{{ product.get('id') }}" class="text-dark">{{ product.get("name") }}</a></h5>
+                    <p class="small text-muted font-italic">{{ product.get("briefDescription") }}</p>
+                    <p>€ {{ product.get("price") }}</p>
+                    <ul class="list-inline small">
+                        <div class="d-flex flex-row">
+                            {% for star in range(product.get("valoration")|int) %}
+                            <li class="list-inline-item m-0"><i class='bx bxs-star'></i></li>
+                            {% endfor %}
+                        </div>
+                    </ul>
+                </div>
+            </div>
+        </a>
+    </div>
+    {% endfor %}
+</div>
+{% endblock %}
